@@ -1,4 +1,4 @@
-# Terraform sample solution to deploy containerized application on AWS
+# Terraform sample solution to deploy distributed, containerized application on AWS
 
 [Cloudposse](https://github.com/cloudposse) have a huge list of open-sourced Terraform modules for AWS.
 
@@ -32,6 +32,8 @@ For this sample solution, below modules are used :
 
 ![Alt text](https://github.com/sanket-bengali/terraform-eks-efs-es-helm/blob/master/images/tf-eks-efs-es-helm-images.png)
 
+
+## [Detailed explanation of this flow](https://medium.com/@sanketbengali.23/deploying-a-distributed-containerized-system-on-aws-using-terraform-674ad20b4f97)
 
 In the my_app.tf module, which is the "root module" that executes other modules need to have module "my_app_eks_setup" to execute the above mentioned flow in addition to other modules :
 
@@ -77,3 +79,7 @@ module "my_app_eks_setup" {
 }
 .....
 ```
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE) for more information.
