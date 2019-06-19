@@ -22,9 +22,9 @@ For this sample solution, below modules are used :
 
 [Elasticsearch](https://github.com/cloudposse/terraform-aws-elasticsearch)
 
-### NOTE : This sample solution includes an additional module called "my-app-eks-setup" that is used to setup and configure Kubernetes after EKS cluster is deployed, and then install Helm charts on top of that.
+#### NOTE : This sample solution includes an additional module called "my-app-eks-setup" that is used to setup and configure Kubernetes after EKS cluster is deployed, and then install Helm charts on top of that.
 
-### In the terraform code for deploying a complete application on AWS, these modules are executed (parallel or sequential, based on their dependencies) from a "root module" (for ex. "my_app.tf").
+#### In the terraform code for deploying a complete application on AWS, these modules are executed (parallel or sequential, based on their dependencies) from a "root module" (for ex. "my_app.tf").
 
 ### High-level flow of the modules deployment :
 
@@ -33,11 +33,7 @@ For this sample solution, below modules are used :
 ![Alt text](https://github.com/sanket-bengali/terraform-eks-efs-es-helm/blob/master/images/tf-eks-efs-es-helm-images.png)
 
 
-## More information
-
-[Deploying a distributed, containerized system on AWS using Terraform](https://medium.com/@sanketbengali.23/deploying-a-distributed-containerized-system-on-aws-using-terraform-674ad20b4f97)
-
-In the my_app.tf module, which is the "root module" that executes other modules need to have module "my_app_eks_setup" to execute the above mentioned flow in addition to other modules :
+In the my_app.tf module, which is the "root module" that executes other modules need to have module "my-app-eks-setup" to execute the above mentioned flow in addition to other modules :
 
 ```
 provider "aws" {
@@ -57,7 +53,7 @@ module "eks-cluster" {
 locals {
   kubeconfig_filename          = "${path.module}/kubeconfig${var.delimiter}${module.eks_cluster.eks_cluster_id}.yaml"
 }
-module "my_app_eks_setup" {
+module "my-app-eks-setup" {
   source                        = "/path/to/module/my-app-eks-setup"
   namespace                     = "${var.namespace}"
   
@@ -81,6 +77,10 @@ module "my_app_eks_setup" {
 }
 .....
 ```
+
+## More information
+
+[Deploying a distributed, containerized system on AWS using Terraform](https://medium.com/@sanketbengali.23/deploying-a-distributed-containerized-system-on-aws-using-terraform-674ad20b4f97)
 
 ## License
 
