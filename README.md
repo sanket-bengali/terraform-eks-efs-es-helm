@@ -1,4 +1,4 @@
-# Terraform sample solution to deploy distributed, containerized application on AWS
+# Terraform sample solution to deploy distributed, cloud-native application on AWS
 
 [Cloudposse](https://github.com/cloudposse) have a huge list of open-sourced Terraform modules for AWS.
 
