@@ -78,7 +78,7 @@ module "my-app-eks-setup" {
 
 ## More information
 
-[Deploying a distributed, cloud-native system on AWS using Terraform](https://medium.com/@sanketbengali.23/deploying-a-distributed-containerized-system-on-aws-using-terraform-674ad20b4f97)
+[Deploying a cloud-native application on AWS using Terraform](https://medium.com/@sanketbengali.23/deploying-a-distributed-containerized-system-on-aws-using-terraform-674ad20b4f97)
 
 ## License
 
