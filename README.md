@@ -18,8 +18,6 @@ For this sample solution, below modules are used :
 
 [EKS workers](https://github.com/cloudposse/terraform-aws-eks-workers)
 
-[EC2 auto-scaling group](https://github.com/cloudposse/terraform-aws-ec2-autoscale-group)
-
 [Elasticsearch](https://github.com/cloudposse/terraform-aws-elasticsearch)
 
 #### NOTE : This sample solution includes an additional module called "my-app-eks-setup" that is used to setup and configure Kubernetes after EKS cluster is deployed, and then install Helm charts on top of that.
