@@ -51,7 +51,7 @@ vars {
 aws_authenticator_command         = "${var.kubeconfig_aws_authenticator_command}"
     aws_authenticator_command_args    = "${join("\n", formatlist("\"%s\"", list("token", "-i", module.label.id)))}"
   }
-depends_on = ["aws_autoscaling_group.default"]
+  depends_on = ["aws_autoscaling_group.default"]
 }
 ```
 
@@ -90,9 +90,11 @@ users:
 
 #### c. In the output.tf, store rendered kubeconfig (from the template file) inside a variable :
 
+```
 output "kubeconfig" {
   value = "${join("", data.template_file.kubeconfig.*.rendered)}"
 }
+```
 
 ### 3. Terraform Kubernetes provider can be defined with any of the below 3 ways :
 
@@ -201,7 +203,7 @@ data {
     - system:nodes
 YAML
   }
-depends_on = ["local_file.kubeconfig"]
+  depends_on = ["local_file.kubeconfig"]
 }
 ```
 
@@ -213,7 +215,7 @@ resource "kubernetes_service_account" "tiller_account" {
     name = "${var.service_account}"
     namespace = "kube-system"
   }
-depends_on = ["kubernetes_config_map.config_map_aws_auth"]
+  depends_on = ["kubernetes_config_map.config_map_aws_auth"]
 }
 resource "kubernetes_namespace" "namespace" {
   metadata {
@@ -243,7 +245,7 @@ resource "kubernetes_cluster_role_binding" "tiller_role_binding" {
     name = "${var.service_account}"
     namespace = "kube-system"
   }
-depends_on = ["kubernetes_service_account.tiller_account"]
+  depends_on = ["kubernetes_service_account.tiller_account"]
 }
 ```
 
@@ -259,7 +261,7 @@ resource "kubernetes_service" "elasticsearch" {
     type = "ExternalName"
     external_name = "${var.domain_endpoint}"
   }
-depends_on = ["kubernetes_namespace.namespace"]
+  depends_on = ["kubernetes_namespace.namespace"]
 }
 ```
 
