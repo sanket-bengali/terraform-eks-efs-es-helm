@@ -45,10 +45,10 @@ data "template_file" "kubeconfig" {
   count    = "${var.enabled == "true" ? 1 : 0}"
   template = "${file("${path.module}/kubeconfig.tpl")}"
 vars {
-    server                     = "${var.cluster_endpoint}"
-    certificate_authority_data = "${var.cluster_certificate_authority_data}"
-    cluster_name               = "${var.cluster_name}"
-aws_authenticator_command         = "${var.kubeconfig_aws_authenticator_command}"
+    server                            = "${var.cluster_endpoint}"
+    certificate_authority_data        = "${var.cluster_certificate_authority_data}"
+    cluster_name                      = "${var.cluster_name}"
+    aws_authenticator_command         = "${var.kubeconfig_aws_authenticator_command}"
     aws_authenticator_command_args    = "${join("\n", formatlist("\"%s\"", list("token", "-i", module.label.id)))}"
   }
   depends_on = ["aws_autoscaling_group.default"]
