@@ -300,3 +300,30 @@ kubernetes {
   }
 }
 ```
+
+### 9. Sample Helm charts installation :
+
+```
+data "helm_repository" "charts_stable" {
+    name = "stable"
+    url  = "https://github.com/helm/charts"
+}
+
+resource "helm_release" "efs-provisioner" {
+  name       = "efs-provisioner"
+  repository = "${data.helm_repository.charts_stable.metadata.0.name}"
+  chart      = "efs-provisioner"
+
+  set {
+    name  = "efsProvisioner.efsFileSystemId"
+    value = "${var.efs_id}"
+  }
+
+  set {
+    name  = "efsProvisioner.awsRegion"
+    value = "${var.region}"
+  }
+
+  depends_on = ["kubernetes_cluster_role_binding.tiller_role_binding"]
+}
+```
